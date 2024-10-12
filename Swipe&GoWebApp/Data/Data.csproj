@@ -125,6 +125,7 @@
     <Compile Include="CategoriesDat.cs" />
     <Compile Include="CommentsDat.cs" />
     <Compile Include="OrderDetailsDat.cs" />
+    <Compile Include="OrdersDat.cs" />
     <Compile Include="PaymentsDat.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
