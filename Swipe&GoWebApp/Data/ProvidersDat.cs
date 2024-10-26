@@ -29,6 +29,22 @@ namespace Data
             return objData;
         }
 
+        //Metodo para mostrar unicamente el id y la descripcion de los Provedores, en el DropDownList
+        public DataSet showProveedoresDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "procSelectProveedoresDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
         // Método para guardar un nuevo proveedor
         public bool saveProveedor(string _nombre, string _contacto, string _direccion)
         {
