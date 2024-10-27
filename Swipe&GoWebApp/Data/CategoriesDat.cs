@@ -28,6 +28,24 @@ namespace Data
             return objData;
         }
 
+
+        // Método para mostrar DDL
+        public DataSet showCategoriasDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "procSelectCategoriasDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
+
         // Método para guardar una nueva categoría en la tabla tbl_categorias
         public bool saveCategoria(string _nombre)
         {
