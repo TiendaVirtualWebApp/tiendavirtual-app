@@ -28,6 +28,24 @@ namespace Data
             return objData;
         }
 
+
+
+        // Método para mostrar DDL  
+        public DataSet showCarritoDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "procSelectCarritoDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
         // Método para guardar un nuevo carrito en la tabla tbl_carrito
         public bool saveCarrito(int _cantidad, decimal _precio_unitario, int _fkproducto, int _fkcliente)
         {
