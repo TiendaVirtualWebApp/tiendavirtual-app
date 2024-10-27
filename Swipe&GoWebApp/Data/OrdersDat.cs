@@ -27,6 +27,23 @@ namespace Data
             return objData;
         }
 
+        // Método para mostrar DDL
+        public DataSet showPedidosDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "procSelectPedidosDDL"; // Nombre del procedimiento almacenado
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
+
         // Método para guardar un nuevo pedido
         public bool savePedido(DateTime _fecha, string _estado, double _total, int _fkcliente)
         {
