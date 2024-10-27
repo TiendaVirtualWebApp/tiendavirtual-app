@@ -27,6 +27,22 @@ namespace Data
             return objData;
         }
 
+        // Método para mostrar DDL
+        public DataSet showPagosDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "procSelectPagosDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
         // Método para guardar un nuevo pago en la tabla tbl_pagos
         public bool savePago(DateTime _fecha, double _monto, string _metodo_pago, string _estado, int _fkpedido, int _fkcliente)
         {
