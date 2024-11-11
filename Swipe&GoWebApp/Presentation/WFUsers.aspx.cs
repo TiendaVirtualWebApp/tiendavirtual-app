@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using Logic;
+using System.Security.Cryptography;
+using SimpleCrypto;
 
 namespace Presentation
 {
@@ -23,6 +25,7 @@ namespace Presentation
         private string _telefono;
         private string _tipo;
         private string _salt;
+        private string _encryptedPaddword;
         // Bandera para saber si la operación fue exitosa
         private bool executed = false;
 
@@ -54,13 +57,13 @@ namespace Presentation
             TBDireccion.Text = "";
             TBTelefono.Text = "";
             TBTipo.Text = "";
-            TBSalt.Text = "";
             HFUsuariosId.Value = "";
         }
 
         // Guardar un nuevo usuario
         protected void BtnSave_Click(object sender, EventArgs e)
         {
+            ICryptoService cryptoService = new PBKDF2();
             // Capturar los datos del usuario
             _nombre = TBNombre.Text;
             _apellido = TBApellido.Text;
@@ -68,11 +71,12 @@ namespace Presentation
             _contrasena = TBContrasena.Text;
             _direccion = TBDireccion.Text;
             _telefono = TBTelefono.Text;
-            _tipo = TBTipo.Text;
-            _salt = TBSalt.Text;
+            _tipo = TBTipo.SelectedValue;
+            _salt = cryptoService.GenerateSalt();
+            _encryptedPaddword = cryptoService.Compute(_contrasena);
 
             // Llamada a la lógica para guardar el usuario
-            executed = objUser.saveUsuario(_nombre, _apellido, _correo, _contrasena, _direccion, _telefono, _tipo, _salt);
+            executed = objUser.saveUsuario(_nombre, _apellido, _correo, _encryptedPaddword, _direccion, _telefono, _tipo, _salt);
 
             if (executed)
             {
@@ -91,7 +95,8 @@ namespace Presentation
         // Actualizar un usuario existente
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            // Obtener los datos del usuario
+            ICryptoService cryptoService = new PBKDF2();
+            // Capturar los datos del usuario
             _id = Convert.ToInt32(HFUsuariosId.Value);
             _nombre = TBNombre.Text;
             _apellido = TBApellido.Text;
@@ -99,11 +104,12 @@ namespace Presentation
             _contrasena = TBContrasena.Text;
             _direccion = TBDireccion.Text;
             _telefono = TBTelefono.Text;
-            _tipo = TBTipo.Text;
-            _salt = TBSalt.Text;
+            _tipo = TBTipo.SelectedValue;
+            _salt = cryptoService.GenerateSalt();
+            _encryptedPaddword = cryptoService.Compute(_contrasena);
 
-            // Llamada a la lógica de negocio para actualizar el usuario
-            executed = objUser.updateUsuario(_id, _nombre, _apellido, _correo, _contrasena, _direccion, _telefono, _tipo, _salt);
+            // Llamada a la lógica para guardar el usuario
+            executed = objUser.updateUsuario(_id, _nombre, _apellido, _correo, _encryptedPaddword, _direccion, _telefono, _tipo, _salt);
 
             if (executed)
             {
@@ -127,11 +133,10 @@ namespace Presentation
             TBNombre.Text = GVUsuarios.SelectedRow.Cells[1].Text;
             TBApellido.Text = GVUsuarios.SelectedRow.Cells[2].Text;
             TBCorreo.Text = GVUsuarios.SelectedRow.Cells[3].Text;
-            TBContrasena.Text = GVUsuarios.SelectedRow.Cells[4].Text;
             TBDireccion.Text = GVUsuarios.SelectedRow.Cells[5].Text;
             TBTelefono.Text = GVUsuarios.SelectedRow.Cells[6].Text;
-            TBTipo.Text = GVUsuarios.SelectedRow.Cells[7].Text;
-            TBSalt.Text = GVUsuarios.SelectedRow.Cells[8].Text;
+            TBTipo.SelectedValue = GVUsuarios.SelectedRow.Cells[7].Text;
+            
         }
 
         // Evento para eliminar un usuario
