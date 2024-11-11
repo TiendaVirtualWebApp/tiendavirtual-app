@@ -72,7 +72,7 @@ namespace Data
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procUpdateUsuarios"; // Nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "procUpdateUsuario"; // Nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objSelectCmd.Parameters.Add("v_id", MySqlDbType.Int32).Value = _id;
             objSelectCmd.Parameters.Add("v_nombre", MySqlDbType.VarChar).Value = _nombre;
@@ -108,7 +108,7 @@ namespace Data
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "procDeleteUsuarios"; // Nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "procDeleteUsuario"; // Nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objSelectCmd.Parameters.Add("v_id", MySqlDbType.Int32).Value = _id;
 
