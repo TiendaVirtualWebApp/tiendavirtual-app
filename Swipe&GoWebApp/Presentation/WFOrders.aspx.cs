@@ -33,7 +33,7 @@ namespace Presentation
         {
             DDLClientes.DataSource = objCust.showClientesDDL();
             DDLClientes.DataValueField = "cli_id";
-            DDLClientes.DataTextField = "Informacion"; // Ajustado para mostrar la información
+            DDLClientes.DataTextField = "Informacion"; // Ajustado para mostrar la informacion
             DDLClientes.DataBind();
             DDLClientes.Items.Insert(0, "Seleccione");
         }

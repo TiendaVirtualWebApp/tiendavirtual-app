@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Gestionar Órdenes</h1>
     <div>
-        <!-- HiddenField para almacenar el ID de la orden seleccionada -->
+        <!-- HiddenField para almacenar el FK de la orden seleccionada -->
         <asp:HiddenField ID="HFOrderId" runat="server" />
 
         <!-- Fecha de la Orden -->
