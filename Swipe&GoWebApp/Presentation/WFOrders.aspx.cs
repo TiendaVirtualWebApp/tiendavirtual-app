@@ -4,113 +4,127 @@ using System;
 using System.Web.UI.WebControls;
 using System.Globalization;
 
+
 namespace Presentation
 {
     public partial class WFOrders : System.Web.UI.Page
     {
-        // Instancia de la clase OrdersLog para interactuar con la logica
         OrdersLog objOrder = new OrdersLog();
+        CustomersLog objCust = new CustomersLog();
 
         private int _id;
         private DateTime _fecha;
         private string _estado;
-        private Double _total;
-        private int _clienteId;
-        // Bandera para saber si la operación fue completada
+        private double _total;
+        private int fkCliente;
         private bool executed = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Solo se ejecuta cuando se carga la página por primera vez
             if (!Page.IsPostBack)
             {
-                showOrders(); // Mostrar todas las órdenes
+                TBFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                showOrders();
+                showClientesDDL();
             }
         }
 
-        // Mostrar todas las órdenes en el GridView
+        private void showClientesDDL()
+        {
+            DDLClientes.DataSource = objCust.showClientesDDL();
+            DDLClientes.DataValueField = "cli_id";
+            DDLClientes.DataTextField = "Informacion"; // Ajustado para mostrar la información
+            DDLClientes.DataBind();
+            DDLClientes.Items.Insert(0, "Seleccione");
+        }
+
         private void showOrders()
         {
-            DataSet objData = new DataSet();
-            objData = objOrder.showPedidos(); // Obtiene todas las órdenes
-            GVOrders.DataSource = objData;   // Asigna el DataSet al GridView
-            GVOrders.DataBind();             // Enlaza los datos con el GridView
+            DataSet objData = objOrder.showPedidos();
+            GVOrders.DataSource = objData;
+            GVOrders.DataBind();
         }
 
-        // Método para limpiar los TextBox y los HiddenField
         private void Clear()
         {
-            TBFecha.Text = "";  // Limpiar el TextBox de Fecha
-            TBEstado.Text = ""; // Limpiar el TextBox de Estado
-            TBTotal.Text = "";  // Limpiar el TextBox de Total
-            TBClienteId.Text = ""; // Limpiar el TextBox de Cliente ID
-            HFOrderId.Value = "";  // Limpiar el HiddenField
+            TBFecha.Text = "";
+            DDLEstado.SelectedValue = "";
+            TBTotal.Text = "";
+            DDLClientes.SelectedIndex = 0;
+            HFOrderId.Value = "";
         }
 
-        // Guardar una nueva orden
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            // Captura los detalles de la orden
-            _fecha = DateTime.ParseExact(TBFecha.Text, "MM-dd-yyyy HH:mm:ss tt", CultureInfo.InvariantCulture); // Fecha desde el TextBox
-            _estado = TBEstado.Text; // Estado desde el TextBox
-             _total = Convert.ToDouble(TBTotal.Text); // Total desde el TextBox
-            _clienteId = Convert.ToInt32(TBClienteId.Text); // Cliente ID desde el TextBox
+          
+            _fecha=DateTime.Parse(TBFecha.Text);
+            _estado = DDLEstado.SelectedValue; // Obtiene el estado seleccionado en el DropDownList
+            _total = Convert.ToDouble(TBTotal.Text);
 
-            // Llamada a la lógica para guardar la orden
-            executed = objOrder.savePedido(_fecha, _estado, _total, _clienteId);
-
-            if (executed)
+            if (int.TryParse(DDLClientes.SelectedValue, out fkCliente))
             {
-                LblMsj.Text = "¡Pedido guardado exitosamente!";
-                LblMsj.ForeColor = System.Drawing.Color.Green;
-                Clear();  // Limpiar los TextBox después de guardar
-                showOrders(); // Mostrar las órdenes actualizadas
+                executed = objOrder.savePedido(_fecha, _estado, _total, fkCliente);
+
+                if (executed)
+                {
+                    LblMsj.Text = "¡Orden guardada exitosamente!";
+                    LblMsj.ForeColor = System.Drawing.Color.Green;
+                    Clear();
+                    showOrders();
+                }
+                else
+                {
+                    LblMsj.Text = "¡Error al guardar la orden!";
+                    LblMsj.ForeColor = System.Drawing.Color.Red;
+                }
             }
             else
             {
-                LblMsj.Text = "¡Error al guardar la orden!";
+                LblMsj.Text = "Por favor, seleccione un cliente válido.";
                 LblMsj.ForeColor = System.Drawing.Color.Red;
             }
         }
 
-        // Actualizar una orden existente
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _id = Convert.ToInt32(HFOrderId.Value);  // Obtener el ID de la orden seleccionada
-            _fecha = DateTime.ParseExact(TBFecha.Text, "MM-dd-yyyy HH:mm:ss tt", CultureInfo.InvariantCulture); // Fecha desde el TextBox
-            _estado = TBEstado.Text; // Estado desde el TextBox
-            _total = Convert.ToDouble(TBTotal.Text); // Total desde el TextBox
-            _clienteId = Convert.ToInt32(TBClienteId.Text); // Cliente ID desde el TextBox
+            _id = Convert.ToInt32(HFOrderId.Value);
+            _fecha = DateTime.Parse(TBFecha.Text);
+            _estado = DDLEstado.SelectedValue; // Obtiene el estado seleccionado en el DropDownList
+            _total = Convert.ToDouble(TBTotal.Text);
 
-            // Llamada a la lógica de negocio para actualizar la orden
-            executed = objOrder.updatePedido(_id, _fecha, _estado, _total, _clienteId);
-
-            if (executed)
+            if (int.TryParse(DDLClientes.SelectedValue, out fkCliente))
             {
-                LblMsj.Text = "¡Orden actualizada exitosamente!";
-                LblMsj.ForeColor = System.Drawing.Color.Green;
-                Clear();
-                showOrders(); // Mostrar las órdenes actualizadas
+                executed = objOrder.updatePedido(_id, _fecha, _estado, _total, fkCliente);
+
+                if (executed)
+                {
+                    LblMsj.Text = "¡Orden actualizada exitosamente!";
+                    LblMsj.ForeColor = System.Drawing.Color.Green;
+                    Clear();
+                    showOrders();
+                }
+                else
+                {
+                    LblMsj.Text = "¡Error al actualizar la orden!";
+                    LblMsj.ForeColor = System.Drawing.Color.Red;
+                }
             }
             else
             {
-                LblMsj.Text = "¡Error al actualizar la orden!";
+                LblMsj.Text = "Por favor, seleccione un cliente válido.";
                 LblMsj.ForeColor = System.Drawing.Color.Red;
             }
         }
 
-        // Evento para seleccionar una fila en el GridView y cargar los datos en los controles
         protected void GVOrders_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Obtener el ID de la orden seleccionada
             HFOrderId.Value = GVOrders.SelectedRow.Cells[0].Text;
-            TBFecha.Text = GVOrders.SelectedRow.Cells[1].Text; // Cargar la fecha de la orden
-            TBEstado.Text = GVOrders.SelectedRow.Cells[2].Text; // Cargar el estado de la orden
-            TBTotal.Text = GVOrders.SelectedRow.Cells[3].Text; // Cargar el total de la orden
-            TBClienteId.Text = GVOrders.SelectedRow.Cells[4].Text; // Cargar el ID del cliente
+            TBFecha.Text = GVOrders.SelectedRow.Cells[1].Text;
+            DDLEstado.SelectedValue = GVOrders.SelectedRow.Cells[2].Text;
+            TBTotal.Text = GVOrders.SelectedRow.Cells[3].Text;
+            DDLClientes.SelectedValue = GVOrders.SelectedRow.Cells[4].Text;
         }
 
-        // Evento para eliminar una orden
         protected void GVOrders_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int orderId = Convert.ToInt32(GVOrders.DataKeys[e.RowIndex].Values[0]);
