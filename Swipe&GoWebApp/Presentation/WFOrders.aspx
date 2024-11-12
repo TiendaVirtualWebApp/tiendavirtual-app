@@ -12,7 +12,7 @@
         <asp:TextBox ID="TBFecha" runat="server"></asp:TextBox>
         <br />
 
-        <!-- Estado de la Orden -->
+        <!-- Estado del pedido -->
         <asp:Label ID="LabelEstado" runat="server" Text="Estado de la Orden:"></asp:Label>
         <asp:TextBox ID="TBEstado" runat="server"></asp:TextBox>
         <br />

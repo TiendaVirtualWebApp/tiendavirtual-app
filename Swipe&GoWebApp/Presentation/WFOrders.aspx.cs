@@ -16,7 +16,7 @@ namespace Presentation
         private string _estado;
         private Double _total;
         private int _clienteId;
-        // Bandera para saber si la operación fue exitosa
+        // Bandera para saber si la operación fue completada
         private bool executed = false;
 
         protected void Page_Load(object sender, EventArgs e)
