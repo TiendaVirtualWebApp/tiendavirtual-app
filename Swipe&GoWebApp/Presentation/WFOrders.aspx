@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <h1>Gestionar Órdenes</h1>
+   <h1>Gestionar Pedidos</h1>
     <div>
         <!-- HiddenField para almacenar el ID de la orden seleccionada -->
         <asp:HiddenField ID="HFOrderId" runat="server" />

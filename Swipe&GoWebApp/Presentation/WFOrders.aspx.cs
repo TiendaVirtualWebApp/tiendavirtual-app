@@ -61,7 +61,7 @@ namespace Presentation
 
             if (executed)
             {
-                LblMsj.Text = "¡Orden guardada exitosamente!";
+                LblMsj.Text = "¡Pedido guardado exitosamente!";
                 LblMsj.ForeColor = System.Drawing.Color.Green;
                 Clear();  // Limpiar los TextBox después de guardar
                 showOrders(); // Mostrar las órdenes actualizadas
