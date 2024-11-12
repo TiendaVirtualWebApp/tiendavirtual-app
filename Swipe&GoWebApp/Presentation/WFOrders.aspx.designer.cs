@@ -3,7 +3,7 @@
 //     Este código fue generado por una herramienta.
 //
 //     Los cambios en este archivo podrían causar un comportamiento incorrecto y se perderán si
-//     se vuelve a generar el código. 
+//     se vuelve a generar el codigo. 
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ namespace Presentation
     {
 
         /// <summary>
-        /// Control HFOrderId
+        /// Control HFOrderId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
@@ -51,13 +51,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label LabelEstado;
 
         /// <summary>
-        /// Control TBEstado.
+        /// Control DDLEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBEstado;
+        protected global::System.Web.UI.WebControls.DropDownList DDLEstado;
 
         /// <summary>
         /// Control LabelTotal.
@@ -78,22 +78,22 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBTotal;
 
         /// <summary>
-        /// Control LabelClienteId.
+        /// Control Label7.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelClienteId;
+        protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// Control TBClienteId.
+        /// Control DDLClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBClienteId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLClientes;
 
         /// <summary>
         /// Control BtnSave.
