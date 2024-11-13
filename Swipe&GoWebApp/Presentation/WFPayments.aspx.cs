@@ -71,7 +71,7 @@ namespace Presentation
         {
             try
             {
-                _fecha = DateTime.ParseExact(TBFecha.Text, "MM-dd-yyyy HH:mm:ss tt", CultureInfo.InvariantCulture);
+                _fecha = Convert.ToDateTime(TBFecha.Text);
                 _monto = Convert.ToDouble(TBMonto.Text);
                 _metodoPago = TBMetodoPago.Text;
                 _estado = TBEstatus.Text;
@@ -105,7 +105,7 @@ namespace Presentation
             try
             {
                 _id = Convert.ToInt32(HFPagoId.Value);
-                _fecha = DateTime.ParseExact(TBFecha.Text, "MM-dd-yyyy HH:mm:ss tt", CultureInfo.InvariantCulture);
+                _fecha = Convert.ToDateTime(TBFecha.Text);
                 _monto = Convert.ToDouble(TBMonto.Text);
                 _metodoPago = TBMetodoPago.Text;
                 _estado = TBEstatus.Text;
