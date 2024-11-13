@@ -12,16 +12,16 @@
 <body>
     <form id="form1" runat="server">
         <a href="Inicio.aspx">Inicio</a>
-        <a href="#">Productos</a>
-        <a href="#">Categorias</a>
-        <a href="#">Pedidos</a>
-        <a href="#">Detalles_pedidos</a>
-        <a href="#">Pagos</a>
-        <a href="#">Proveedores</a>
-        <a href="#">Clientes</a>
-        <a href="#">Carrito</a>
-        <a href="#">Comentarios</a>
-        <a href="#">Usuarios</a>
+        <a href="WFProducts.aspx">Productos</a>
+        <a href="WFCategories.aspx">Categorias</a>
+        <a href="WFOrders.aspx">Pedidos</a>
+        <a href="WFOrderDetails.aspx">Detalles_pedidos</a>
+        <a href="WFPayments.aspx">Pagos</a>
+        <a href="WFProviders.aspx">Proveedores</a>
+        <a href="WFCustomers.aspx">Clientes</a>
+        <a href="WFCart.aspx">Carrito</a>
+        <a href="WFComments.aspx">Comentarios</a>
+        <a href="WFUsers.aspx">Usuarios</a>
         <a href="#">Cerrar Sesion</a>
         <div>
             
