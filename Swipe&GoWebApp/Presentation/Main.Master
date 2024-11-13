@@ -22,7 +22,7 @@
         <a href="WFCart.aspx">Carrito</a>
         <a href="WFComments.aspx">Comentarios</a>
         <a href="WFUsers.aspx">Usuarios</a>
-        <a href="#">Cerrar Sesion</a>
+        <a href="Login.aspx">Cerrar Sesion</a>
         <div>
             
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
