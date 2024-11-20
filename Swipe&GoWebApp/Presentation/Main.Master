@@ -1,33 +1,117 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Presentation.Main" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipe&Go</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css?v=1.0">
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-        <a href="Inicio.aspx">Inicio</a>
-        <a href="WFProducts.aspx">Productos</a>
-        <a href="WFCategories.aspx">Categorias</a>
-        <a href="WFOrders.aspx">Pedidos</a>
-        <a href="WFOrderDetails.aspx">Detalles_pedidos</a>
-        <a href="WFPayments.aspx">Pagos</a>
-        <a href="WFProviders.aspx">Proveedores</a>
-        <a href="WFCustomers.aspx">Clientes</a>
-        <a href="WFCart.aspx">Carrito</a>
-        <a href="WFComments.aspx">Comentarios</a>
-        <a href="WFUsers.aspx">Usuarios</a>
-        <a href="Login.aspx">Cerrar Sesion</a>
-        <div>
-            
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+        <!-- Navbar -->
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <!-- Botón para abrir el menú lateral -->
+                <button
+                    class="btn btn-dark"
+                    type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <!-- Enlace a Inicio -->
+                <a class="navbar-brand ms-2" href="Inicio.aspx">Swipe&Go</a>
+
+                <!-- Texto centrado en el Navbar -->
+                <a class="navbar-brand mx-auto text-white fw-bold" href="https://public.tableau.com/app/profile/dennis.stiven.velez.g/viz/DashboardSWIPEGO/Dashboard1?publish=yes" >Dashboard</a>
+
+                <!-- Opciones del usuario -->
+                <div class="dropdown ms-auto">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="user" width="30" height="30" class="rounded-circle">
+                        <span class="ms-2">Usuario</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="Login.aspx">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Menú lateral (Offcanvas) -->
+        <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="sidebarMenuLabel">Menú</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="Inicio.aspx" class="nav-link text-white">
+                            <i class="fs-4 bi-house"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="WFPayments.aspx" class="nav-link text-white">
+                            <i class="bi bi-cash-stack"></i> Pagos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white">
+                            <i class="fs-4 bi-speedometer2"></i> Panel
+                        </a>
+                        <ul class="collapse nav flex-column ms-3" id="submenu1">
+                            <li><a href="WFProducts.aspx" class="nav-link text-white">Productos</a></li>
+                            <li><a href="WFCategories.aspx" class="nav-link text-white">Categorías</a></li>
+                            <li><a href="WFComments.aspx" class="nav-link text-white">Comentarios</a></li>
+                            <li><a href="WFOrderDetails.aspx" class="nav-link text-white">Detalles del pedido</a></li>
+                            <li><a href="WFProviders.aspx" class="nav-link text-white">Proveedores</a></li>
+                            <li><a href="WFCustomers.aspx" class="nav-link text-white">Clientes</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="WFOrders.aspx" class="nav-link text-white">
+                            <i class="fs-4 bi-table"></i> Pedidos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="WFCart.aspx" class="nav-link text-white">
+                            <i class="bi bi-cart-check-fill"></i> Carrito de compra
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-white">
+                            <i class="fs-4 bi-box-arrow-right"></i> Cerrar Sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content mt-5 pt-3">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white py-4">
+            <div class="container text-center">
+                <p class="mb-0">¿Tienes dudas? <a href="Contacto.aspx" class="text-primary">Contáctanos</a></p>
+                <p class="mb-0">&copy; 2024 Swipe&Go. Todos los derechos reservados.</p>
+            </div>
+        </footer>
     </form>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
