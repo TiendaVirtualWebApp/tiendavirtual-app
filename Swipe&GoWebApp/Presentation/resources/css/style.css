@@ -1,0 +1,154 @@
+﻿/* General */
+/*body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;*/ /* Fondo más claro */
+    /*color: #333;*/ /* Texto más legible */
+/*}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}*/
+
+/*main {
+    padding: 20px;
+    max-width: 1200px;*/ /* Limita el ancho en pantallas grandes */
+    /*margin: 0 auto;*/ /* Centra el contenido */
+/*}*/
+
+/* Título principal */
+h1 {
+    font-size: 28px;
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+    form input[type="text"],
+    form select {
+        width: calc(100% - 20px); /* Ajusta el tamaño del input */
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    form button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px; /* Reduce el tamaño de la fuente para mayor claridad */
+}
+
+    table th, table td {
+        text-align: left;
+        padding: 12px;
+        border: 1px solid #dee2e6;
+    }
+
+    table th {
+        background-color: #007bff;
+        color: #fff;
+        text-transform: uppercase; /* Hace que los encabezados estén en mayúsculas */
+        font-size: 14px;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    table tr:hover {
+        background-color: #e9ecef; /* Efecto hover en las filas */
+    }
+
+    table td {
+        vertical-align: middle;
+    }
+
+    table a {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+        table a:hover {
+            text-decoration: underline;
+        }
+
+/* Responsivo */
+@media (max-width: 768px) {
+    table, form {
+        font-size: 12px; /* Ajusta el tamaño de texto para pantallas pequeñas */
+    }
+
+        form input[type="text"],
+        form select {
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        form button {
+            font-size: 12px;
+            padding: 8px;
+        }
+}
+
+/* Ajustar la altura máxima de las imágenes del carrusel */
+.carousel-inner img {
+    /* Ajusta la altura deseada */
+    object-fit:fill; /* Mantiene la proporción de la imagen y recorta si es necesario */
+    width:50%;
+
+}
+
+/* Estilo para los indicadores del carrusel */
+.carousel-indicators button {
+    width: 20px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #333; /* Color oscuro para los indicadores */
+}
+
+
+
+
+/* Ajustar el margen del carrusel */
+#carouselExampleIndicators {
+    margin-top: auto; /* Espacio superior */
+    margin-bottom: 0px; /* Espacio inferior */
+    border-radius: 1px; /* Bordes redondeados para todo el carrusel */
+    overflow: inherit; /* Ocultar contenido que se salga del contenedor */
+}
